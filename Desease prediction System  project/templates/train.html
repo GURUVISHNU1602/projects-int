@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Train Model</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <h2>Disease System</h2>
+
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/train" class="active">⚙️ Train Model</a>
+        <a href="/predict">🧠 Predict</a>
+        <a href="/history">📜 History</a>
+        <a href="/graph">📊 Graph</a>
+        <a href="/logout">🚪 Logout</a>
+      </div>
+
+      <!-- MAIN -->
+      <div class="main">
+        <div class="topbar">
+          <h2>Train Machine Learning Model</h2>
+        </div>
+
+        <div class="card">
+          <h3>Upload Dataset</h3>
+          <p style="color: gray">Upload a CSV file to train your model</p>
+
+          <!-- FORM -->
+          <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required />
+            <br /><br />
+            <button class="btn">🚀 Train Model</button>
+          </form>
+
+          <!-- MESSAGE -->
+          {% if message %}
+          <div
+            style="
+              margin-top: 15px;
+              padding: 10px;
+              border-radius: 8px;
+              background: #e6fffa;
+            "
+          >
+            {{ message }}
+          </div>
+          {% endif %}
+
+          <!-- DOWNLOAD BUTTON -->
+          {% if trained %}
+          <br /><br />
+          <a href="/download">
+            <button class="btn">⬇️ Download Trained Model</button>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <title>History</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <h2>Disease System</h2>
+
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/train">⚙️ Train Model</a>
+        <a href="/predict">🧠 Predict</a>
+        <a href="/history" class="active">📜 History</a>
+        <a href="/graph">📊 Graph</a>
+        <a href="/logout">🚪 Logout</a>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="main">
+        <!-- HEADER -->
+        <div class="topbar">
+          <h2>Prediction History</h2>
+        </div>
+
+        <!-- CARD -->
+        <div class="card" style="width: 90%; max-width: 900px">
+          <!-- CLEAR BUTTON -->
+          <div style="margin-bottom: 15px; text-align: right">
+            <a href="/clear_history">
+              <button
+                style="
+                  background: red;
+                  color: white;
+                  padding: 8px 15px;
+                  border: none;
+                  border-radius: 6px;
+                "
+              >
+                🗑 Clear All
+              </button>
+            </a>
+          </div>
+
+          {% if history and history|length > 0 %}
+
+          <table style="width: 100%; border-collapse: collapse">
+            <!-- HEADER -->
+            <tr style="background: #e2e8f0; font-weight: 600">
+              <th style="padding: 15px">📅 Date</th>
+              <th style="padding: 15px">🧾 Symptoms</th>
+              <th style="padding: 15px">🩺 Result</th>
+              <th style="padding: 15px">⚙️ Action</th>
+            </tr>
+
+            <!-- DATA -->
+            {% for row in history %}
+            <tr style="border-bottom: 1px solid #ddd">
+              <td style="padding: 15px">{{ row.date }}</td>
+
+              <td style="padding: 15px">{{ row.input }}</td>
+
+              <td style="padding: 15px">
+                <span
+                  style="
+                    background: #3b82f6;
+                    color: white;
+                    padding: 6px 12px;
+                    border-radius: 20px;
+                  "
+                >
+                  {{ row.result }}
+                </span>
+              </td>
+
+              <!-- DELETE BUTTON -->
+              <td style="padding: 15px">
+                <a href="/delete_history/{{ loop.index0 }}">
+                  <button
+                    style="
+                      background: #ef4444;
+                      color: white;
+                      padding: 6px 10px;
+                      border: none;
+                      border-radius: 5px;
+                    "
+                  >
+                    ❌ Delete
+                  </button>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+
+          {% else %}
+
+          <!-- EMPTY STATE -->
+          <div style="text-align: center; padding: 40px">
+            <h3 style="color: #666">No History Found</h3>
+            <p style="color: #999">Start making predictions to see history.</p>
+          </div>
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

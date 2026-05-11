@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}"
+    />
+  </head>
+
+  <body>
+    <h1 style="color: red">HELLO!</h1>
+    <!-- ADD HERE -->
+    <div class="dashboard">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <h2>🩺 Disease Prediction Platform</h2>
+
+        <a href="/dashboard" class="active">🏠 Dashboard</a>
+        <a href="/train">⚙️ Train Model</a>
+        <a href="/predict">📊 Prediction</a>
+        <a href="/history">📁 History</a>
+        <a href="/logout">🚪 Logout</a>
+      </div>
+
+      <!-- MAIN -->
+      <div class="main">
+        <div class="topbar">
+          <h2>Dashboard</h2>
+          <p>👋 {{ session['user'] }}</p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>🧠 Model Ready</h3>
+            <p>Your disease prediction model is trained and ready.</p>
+          </div>
+
+          <div class="card">
+            <h3>📊 Run Prediction</h3>
+            <p>Predict diseases using symptoms.</p>
+            <a href="/predict" class="btn">Start</a>
+          </div>
+
+          <div class="card">
+            <h3>📁 View History</h3>
+            <p>Check previous predictions.</p>
+            <a href="/history" class="btn">Open</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

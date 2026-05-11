@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <h2>Model Analytics</h2>
+
+    <h3>Training Accuracy</h3>
+    <canvas id="trainChart"></canvas>
+
+    <h3>Prediction Distribution</h3>
+    <canvas id="predictChart"></canvas>
+
+    <script>
+      // TRAIN GRAPH
+      const trainData = {{ train_data | tojson }};
+
+      new Chart(document.getElementById('trainChart'), {
+          type: 'line',
+          data: {
+              labels: trainData.map((_, i) => "Run " + (i + 1)),
+              datasets: [{
+                  label: "Accuracy %",
+                  data: trainData
+              }]
+          }
+      });
+
+      // PREDICT GRAPH
+      const predictData = {{ predict_data | tojson }};
+
+      let count = {};
+      predictData.forEach(p => {
+          count[p] = (count[p] || 0) + 1;
+      });
+
+      new Chart(document.getElementById('predictChart'), {
+          type: 'bar',
+          data: {
+              labels: Object.keys(count),
+              datasets: [{
+                  label: "Predictions",
+                  data: Object.values(count)
+              }]
+          }
+      });
+    </script>
+  </body>
+</html>

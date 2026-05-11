@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login | Disease Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SAME CSS FILE -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='auth.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- LEFT SIDE -->
+      <div class="left">
+        <div class="content">
+          <h1>Disease Prediction</h1>
+          <p>AI Powered Health Assistant</p>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="right">
+        <div class="form-box">
+          <!-- TABS -->
+          <div class="tabs">
+            <a class="active">Login</a>
+            <a href="/register">Register</a>
+          </div>
+
+          <h2>Welcome Back 👋</h2>
+
+          <form method="POST">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+
+            <button type="submit">Login</button>
+          </form>
+
+          <p class="link">
+            Don't have an account?
+            <a href="/register">Register</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

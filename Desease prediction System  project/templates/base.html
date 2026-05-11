@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Disease Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='auth.css') }}"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="profile-box">{{ session['user'] }}</div>
+
+        <div class="menu">
+          <a href="/dashboard">Dashboard</a>
+          <a href="/train">Train</a>
+          <a href="/predict">Predict</a>
+          <a href="/history">History</a>
+          <a href="/graph">Graph</a>
+        </div>
+
+        <a href="/logout" class="logout-btn">Logout</a>
+      </div>
+
+      <div class="main">
+        <div class="header">
+          <h1>🧠 Disease Prediction Platform</h1>
+        </div>
+
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>
